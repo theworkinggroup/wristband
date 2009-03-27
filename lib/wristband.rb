@@ -4,6 +4,15 @@ require 'wristband/application_extensions'
 require 'wristband/authority_check'
 
 module Wristband
+
+  VERSION = "1.0.0"
+
+  class << self
+    def included base #:nodoc:
+      base.extend ClassMethods
+    end
+  end
+
   module ClassMethods
     def wristband(options={})
       options[:login_with]            ||= [:username]
@@ -97,6 +106,16 @@ module Wristband
       end
     end
   end
-
   
 end
+
+# Set it all up.
+if Object.const_defined?("ActiveRecord")
+  ActiveRecord::Base.send(:extend, Wristband::ClassMethods)
+end
+
+if Object.const_defined?("ActionController")
+  ActionController::Base.send(:include, Wristband::ApplicationExtensions)
+end
+
+
