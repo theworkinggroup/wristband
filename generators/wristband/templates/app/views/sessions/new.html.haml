@@ -1,0 +1,17 @@
+%h1 Login
+
+= error_messages_for :user
+- form_for :user, @user, :url => sessions_path, :builder => CustomForm do |f|
+  = f.text_field :username
+  = f.password_field :password
+  = f.check_box :remember_me, :label => 'Remember me when I come back'
+  = f.submit 'Log In'
+
+
+%p
+  Did you forget your password?
+  = link_to 'Recover it here.', forgot_password_path
+%p 
+  If you don't have a login yet, click
+  = link_to 'here', register_path
+  to register.

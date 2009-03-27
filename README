@@ -1,0 +1,130 @@
+= Wristband plugin
+Author:: {The Working Group, Inc}[http://www.theworkinggroup.ca]
+Version:: 0.5
+
+The Wristband plug-in simplifies the user authentication process necessary in most web applications.
+
+It handles:
+
+* Login and logout
+* Password storage with encryption
+* Remember me functionality
+* Authority definitions
+  
+  
+== Usage
+
+From a clean project
+(assuming you just did <tt>rails myproject</tt> )
+
+<b>1.</b> Install the plugin
+  cd vendor/plugins
+  svn export http://twg.unfuddle.com/svn/twg_twgplugins/wristband/trunk wristband
+
+<b>2.</b> Run the wristband generator:
+  script/generate wristband
+  
+This will output something like:
+
+  exists  app/models
+  create  app/models/user.rb
+  create  app/controllers/users_controller.rb
+  create  app/views/users/index.html.haml
+  exists  app/controllers
+  create  app/controllers/sessions_controller.rb
+  create  app/views/sessions/new.html.haml
+  exists  db/migrate
+  exists  db/migrate
+  create  db/migrate/001_wristband.rb
+  route  specific routes
+  route  map.resources :sessions, :users
+
+<b>3.</b> Run migrations
+  
+  rake db:migrate
+  
+<b>4.</b> Restart your server
+
+<b>5.</b> Add whatever validations you need in your User model
+
+<b>6.</b> Read the documentation on each one of the generated files
+
+
+== Configuration
+
+
+=== User model
+
+  class User < ActiveRecord::Base
+    wristband [options]
+  end
+
+==== Options:
+
+[:login_with] Array of fields you want to authenticate the user with. Default: usename 
+  
+  wristband :login_with => [:username, :email]
+
+
+[:before_authentication] Array of functions run after the user authentication takes place. Default: [] 
+
+  wristband :before_authentication => :do_something
+
+
+[:after_authentication] Array of functions run before the user authentication takes place. Default: [] 
+
+  wristband :after_authentication => :do_something
+
+
+[:plain_text_password] If true the password won't be encrypted. Default: false 
+
+  wristband :plain_text_password => true
+
+[:has_authorities] If true the password won't be encrypted. Default: false 
+
+  wristband :plain_text_password => true
+
+==== Remarks:
+
+* While password_crypt is limited to 40 characters, the standard output of the hashing function used to encrypt it, there is no such limit on the length of the password as input by the user.
+* There are no default restrictions on the content of the username. These should be added as required.
+* A user's password is stored encrypted by default but support for plain- text passwords is also provided. Leaving 'password_salt' as blank or nil means the password is not encrypted. This makes the content of user
+fixtures easy to read and understand.
+* The 'remember_token' field is used for login authentication via persistent cookie. This value changes each time the user's password is reassigned.
+
+
+== Functionality
+
+=== 1. Remember me
+If you want to automatically login a user when he comes back to your site, add <tt>before_filter :login_from_cookie</tt> to your AplicationController.
+
+=== 2. Authority Definitions
+
+Check the documentation on the link:files/lib/authority_check_rb.html file
+
+==== Other Reading
+
+"The Emerging Standards Bureau" on naming methods
+http://giantrobots.thoughtbot.com/2008/4/10/the-emerging-standards-bureau
+   
+
+== Database configuration
+
+The generator gives you a head start.
+The basic columns are defined as such:
+
+  create_table :users do |t|
+    t.string :email
+    t.string :password_crypt, :limit => 40
+    t.string :password_salt,  :limit => 40
+    t.string :remember_token
+    t.string :email_validation_key
+    t.string :role
+    t.datetime :created_at
+    t.datetime :updated_at
+    # Add your own stuff here ...
+  end
+
+
+
+

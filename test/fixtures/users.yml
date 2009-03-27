@@ -1,0 +1,23 @@
+scott:
+  username: scott
+  email: scott@theworkinggroup.ca
+  password_crypt: passpass
+  
+jack:
+  username: jack
+  email: jack@theworkinggroup.ca
+  password_crypt: 7d103e2aee36a422ac5f619705e244b03c9e1328
+  password_salt: ad28d83c111a5ab70cef9d0896e5b18e84d899ef
+  
+oleg:
+  username: oleg
+  email: oleg@theworkinggroup.ca
+  password_crypt: 7d103e2aee36a422ac5f619705e244b03c9e1328
+  password_salt: ad28d83c111a5ab70cef9d0896e5b18e84d899ef
+
+hesham:
+  username: hesham
+  email: hesham@theworkinggroup.ca
+  password_crypt: 7d103e2aee36a422ac5f619705e244b03c9e1328
+  password_salt: ad28d83c111a5ab70cef9d0896e5b18e84d899ef
+
