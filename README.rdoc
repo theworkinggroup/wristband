@@ -1,4 +1,5 @@
-= Wristband plugin
+= Wristband
+
 Author:: {The Working Group, Inc}[http://www.theworkinggroup.ca]
 Version:: 1.0.0
 
