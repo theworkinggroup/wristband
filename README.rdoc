@@ -76,7 +76,34 @@ This will output something like:
 
   wristband :plain_text_password => true
 
-[:has_authorities] If true the password won't be encrypted. Default: false 
+[:has_authorities] The different user authorities are defined in a separate class so as to reduce clutter in the User model itself. Check the documentation on the link:files/lib/authority_check_rb.html file
+Default: false 
 
-  wristband :plain_text_password => true
+  wristband :has_authorities => true
+
+[:roles] Use this to define the different roles the user can assume. Make sure you have a role column on your users table. It will generate functions like is_<role>? for each one of the roles youdefine.
+  
+  wristband :roles => [:regular_user, :admin]
+  
+  will generate is_regular_user? and is_admin?
+
+
+==== Remarks:
+
+* While password_crypt is limited to 40 characters, the standard output of the hashing function used to encrypt it, there is no such limit on the length of the password as input by the user.
+* There are no default restrictions on the content of the username. These should be added as required.
+* A user's password is stored encrypted by default but support for plain- text passwords is also provided. Leaving 'password_salt' as blank or nil means the password is not encrypted. This makes the content of user
+fixtures easy to read and understand.
+* The 'remember_token' field is used for login authentication via persistent cookie. This value changes each time the user's password is reassigned.
+
+
+
+== Functionality
+
+=== 1. Remember me
+If you want to automatically login a user when he comes back to your site, add <tt>before_filter :login_from_cookie</tt> to your AplicationController.
+
+=== 2. Authority Definitions
+
+Check the documentation on the link:files/lib/authority_check_rb.html file
 
