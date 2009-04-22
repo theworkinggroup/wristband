@@ -91,8 +91,7 @@ This will output something like:
 
 * While password_crypt is limited to 40 characters, the standard output of the hashing function used to encrypt it, there is no such limit on the length of the password as input by the user.
 * There are no default restrictions on the content of the username. These should be added as required.
-* A user's password is stored encrypted by default but support for plain- text passwords is also provided. Leaving 'password_salt' as blank or nil means the password is not encrypted. This makes the content of user
-fixtures easy to read and understand.
+* A user's password is stored encrypted by default but support for plain-text passwords is also provided. Leaving 'password_salt' as blank or nil means the password is not encrypted. This makes the content of user fixtures easy to read and understand.
 * The 'remember_token' field is used for login authentication via persistent cookie. This value changes each time the user's password is reassigned.
 
 
@@ -102,4 +101,26 @@ fixtures easy to read and understand.
 If you want to automatically login a user when he comes back to your site, add <tt>before_filter :login_from_cookie</tt> to your AplicationController.
 
 === 2. Authority Definitions
+Checkout the documentation on wristband/authority_check_rb
 
+
+
+== Database configuration
+
+The generator gives you a head start.
+The basic columns are defined as such:
+
+  create_table :users do |t|
+    t.string :email
+    t.string :password_crypt, :limit => 40
+    t.string :password_salt,  :limit => 40
+    t.string :remember_token
+    t.string :email_validation_key
+    t.string :role
+    t.datetime :created_at
+    t.datetime :updated_at
+    # Add your own stuff here ...
+  end
+
+
+Have fun!!
