@@ -4,3 +4,13 @@ Version:: 1.0.0
 
 The Wristband plug-in simplifies the user authentication process necessary in most web applications.
 
+
+It handles:
+
+* Login and logout
+* Password storage with encryption
+* Remember me functionality
+* Authority definitions
+  
+  
+== Usage
