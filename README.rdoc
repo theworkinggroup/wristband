@@ -97,13 +97,3 @@ fixtures easy to read and understand.
 * The 'remember_token' field is used for login authentication via persistent cookie. This value changes each time the user's password is reassigned.
 
 
-
-== Functionality
-
-=== 1. Remember me
-If you want to automatically login a user when he comes back to your site, add <tt>before_filter :login_from_cookie</tt> to your AplicationController.
-
-=== 2. Authority Definitions
-
-Check the documentation on the link:files/lib/authority_check_rb.html file
-
