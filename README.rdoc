@@ -44,3 +44,39 @@ This will output something like:
 <b>4.</b> Add whatever validations you need in your User model
 
 <b>5.</b> Read the documentation on each one of the generated files
+
+
+== Configuration
+
+
+=== User model
+
+  class User < ActiveRecord::Base
+    wristband [options]
+  end
+
+==== Options:
+
+[:login_with] Array of fields you want to authenticate the user with. Default: usename 
+  
+  wristband :login_with => [:username, :email]
+
+
+[:before_authentication] Array of functions run after the user authentication takes place. Default: [] 
+
+  wristband :before_authentication => :do_something
+
+
+[:after_authentication] Array of functions run before the user authentication takes place. Default: [] 
+
+  wristband :after_authentication => :do_something
+
+
+[:plain_text_password] If true the password won't be encrypted. Default: false 
+
+  wristband :plain_text_password => true
+
+[:has_authorities] If true the password won't be encrypted. Default: false 
+
+  wristband :plain_text_password => true
+
