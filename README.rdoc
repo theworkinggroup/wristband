@@ -76,12 +76,11 @@ This will output something like:
 
   wristband :plain_text_password => true
 
-[:has_authorities] The different user authorities are defined in a separate class so as to reduce clutter in the User model itself. 
-Default: false 
+[:has_authorities] The different user authorities are defined in a separate class so as to reduce clutter in the User model itself. Default: false 
 
   wristband :has_authorities => true
 
-[:roles] Use this to define the different roles the user can assume. Make sure you have a role column on your users table. It will generate functions like is_<role>? for each one of the roles youdefine.
+[:roles] Use this to define the different roles the user can assume. Make sure you have a role column on your users table. It will generate functions like <tt>is_<role>?</tt> for each one of the roles youdefine.
   
   wristband :roles => [:regular_user, :admin]
   
@@ -96,4 +95,11 @@ Default: false
 fixtures easy to read and understand.
 * The 'remember_token' field is used for login authentication via persistent cookie. This value changes each time the user's password is reassigned.
 
+
+== Functionality
+
+=== 1. Remember me
+If you want to automatically login a user when he comes back to your site, add <tt>before_filter :login_from_cookie</tt> to your AplicationController.
+
+=== 2. Authority Definitions
 
