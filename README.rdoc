@@ -76,7 +76,7 @@ This will output something like:
 
   wristband :plain_text_password => true
 
-[:has_authorities] The different user authorities are defined in a separate class so as to reduce clutter in the User model itself. Check the documentation on the link:files/lib/authority_check_rb.html file
+[:has_authorities] The different user authorities are defined in a separate class so as to reduce clutter in the User model itself. 
 Default: false 
 
   wristband :has_authorities => true
