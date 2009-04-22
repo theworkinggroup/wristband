@@ -14,3 +14,33 @@ It handles:
   
   
 == Usage
+
+<b>1.</b> Install the gem
+  gem sources -a http://gems.github.com
+  sudo gem install theworkinggroup-wristband
+
+<b>2.</b> Run the wristband generator:
+  script/generate wristband
+  
+This will output something like:
+
+  exists  app/models
+  create  app/models/user.rb
+  create  app/controllers/users_controller.rb
+  create  app/views/users/index.html.haml
+  exists  app/controllers
+  create  app/controllers/sessions_controller.rb
+  create  app/views/sessions/new.html.haml
+  exists  db/migrate
+  exists  db/migrate
+  create  db/migrate/001_wristband.rb
+  route  specific routes
+  route  map.resources :sessions, :users
+
+<b>3.</b> Run migrations
+  
+  rake db:migrate
+
+<b>4.</b> Add whatever validations you need in your User model
+
+<b>5.</b> Read the documentation on each one of the generated files
