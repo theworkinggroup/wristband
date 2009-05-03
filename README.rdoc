@@ -1,6 +1,7 @@
 = Wristband
 Author:: {The Working Group, Inc}[http://www.theworkinggroup.ca]
 Version:: 1.0.0
+Documentation: http://theworkinggroup.ca/docs/wristband/index.html
 
 The Wristband plug-in simplifies the user authentication process necessary in most web applications.
 
